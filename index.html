@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalender Nasional OSIS | Sekbid 8</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --primary:#0ea5e9;
+  --muted:#64748b;
+}
+
+body.dark{
+  --bg:#020617;
+  --card:#020617;
+  --text:#e5e7eb;
+  --primary:#38bdf8;
+  --muted:#94a3b8;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+/* ===== HEADER ===== */
+header{
+  position:relative;
+  height:70vh;
+  overflow:hidden;
+  border-bottom-left-radius:35px;
+  border-bottom-right-radius:35px;
+}
+
+/* FOTO HEADER */
+.header-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* GRADIENT OVERLAY */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(2,6,23,0.85),
+    rgba(2,6,23,0.55),
+    rgba(2,6,23,0.15),
+    transparent
+  );
+  z-index:1;
+}
+
+/* DARK MODE BUTTON */
+.toggle{
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:3;
+}
+
+.toggle button{
+  padding:10px 16px;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* TEXT HEADER */
+.hero{
+  position:absolute;
+  bottom:40px;
+  left:25px;
+  color:white;
+  z-index:2;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  line-height:1.2;
+}
+
+.hero span{color:#7dd3fc}
+
+.hero p{
+  margin-top:10px;
+  font-size:14px;
+  opacity:.95;
+}
+
+/* CONTENT */
+.container{
+  padding:30px 16px 80px;
+  max-width:480px;
+  margin:auto;
+}
+
+.month{
+  background:var(--card);
+  border-radius:22px;
+  margin-bottom:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  overflow:hidden;
+}
+
+.month-header{
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  background:linear-gradient(90deg, rgba(14,165,233,.18), transparent);
+}
+
+.month-header h2{
+  font-size:18px;
+  color:var(--primary);
+}
+
+.events{
+  display:none;
+  padding:18px;
+}
+
+.event{
+  background:rgba(148,163,184,.1);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+  border-left:4px solid var(--primary);
+}
+
+.event span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.event h3{
+  font-size:14px;
+  margin-top:4px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  header{height:60vh}
+  .container{max-width:720px}
+}
+@media(min-width:1024px){
+  .container{max-width:900px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <!-- GANTI FOTO SENDIRI -->
+  <img src="foto.JPG" class="header-img" alt="Header OSIS">
+
+  <div class="toggle">
+    <button onclick="toggleMode()">🌙 / ☀️</button>
+  </div>
+
+  <div class="hero">
+    <h1><span>Kalender Digital</span><br>Hari Besar Nasional</h1>
+    <p>OSIS • Sekbid 8 (TIK)<br>Konten • Poster • Publikasi Digital</p>
+  </div>
+</header>
+
+<div class="container">
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Januari</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>1 Januari</span><h3>Tahun Baru Masehi - Nazih</h3></div>
+<div class="event"><span>15 Januari</span><h3>Isra Mi’raj Nabi Muhammad SAW 1447 H - All</h3></div>
+<div class="event"><span>24 Januari</span><h3>Hari Pendidikan Internasional - Deandra</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Februari</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>-</span><h3>-</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Maret</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>21 – 22 Maret</span><h3>Idul Fitri 1447 H - Vicky</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>April</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>21 April</span><h3>Hari Kartini - Nazih</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Mei</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>2 Mei</span><h3>Hari Pendidikan Nasional - All</h3></div>
+<div class="event"><span>20 Mei</span><h3>Hari Kebangkitan Nasional - Deandra</h3></div>
+<div class="event"><span>27 Mei</span><h3>Idul Adha 1447 H - Vicky</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Juni</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>1 Juni</span><h3>Hari Lahir Pancasila - Nazih</h3></div>
+<div class="event"><span>29 Juni</span><h3>Tahun Baru Hijriah 1448 H - All</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Juli</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>23 Juli</span><h3>Hari Anak Nasional - Vicky</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Agustus</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>17 Agustus</span><h3>Hari Kemerdekaan RI - Deandra</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>September</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>30 September</span><h3>Peringatan G30S/PKI - Nazih</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Oktober</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>1 Oktober</span><h3>Hari Kesaktian Pancasila - All</h3></div>
+<div class="event"><span>2 Oktober</span><h3>Hari Batik Nasional - Deandra</h3></div>
+<div class="event"><span>2 Oktober</span><h3>Hari Guru Sedunia - Vicky</h3></div>
+<div class="event"><span>28 Oktober</span><h3>Hari Sumpah Pemuda - Nazih</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>November</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>10 November</span><h3>Hari Pahlawan - All</h3></div>
+<div class="event"><span>25 November</span><h3>Hari Guru Nasional - Deandra</h3></div>
+</div>
+</div>
+
+<div class="month">
+<div class="month-header" onclick="toggleMonth(this)">
+<h2>Desember</h2><span>➕</span>
+</div>
+<div class="events">
+<div class="event"><span>22 Desember</span><h3>Hari Ibu - Vicky</h3></div>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 | OSIS Sekbid 8 — Teknologi Informasi & Komunikasi
+</footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle('dark');
+}
+function toggleMonth(header){
+  const events = header.nextElementSibling;
+  const icon = header.querySelector('span');
+  if(events.style.display === "block"){
+    events.style.display = "none";
+    icon.textContent = "➕";
+  }else{
+    events.style.display = "block";
+    icon.textContent = "➖";
+  }
+}
+</script>
+
+</body>
+</html>
